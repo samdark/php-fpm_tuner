@@ -14,8 +14,8 @@ function getFreeMemory() {
     if (PHP_OS_FAMILY == 'Windows' && preg_match('~(\d+)~', shell_exec('wmic OS get FreePhysicalMemory'), $matches)) {
         $freeMemory = round((int) $matches[1] / 1024);
     } else {
-        if (preg_match('~Mem:\s+\d+\s+\d+\s+(\d+)~', shell_exec('free -m'), $matches)) {
-            $freeMemory = $matches[1];
+        if (preg_match('~MemFree:\s+(\d+)\s+~', shell_exec('cat /proc/meminfo'), $matches)) {
+            $freeMemory = $matches[1] / 1024;
         }
     }
     return (int) $freeMemory;
