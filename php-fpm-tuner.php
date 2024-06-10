@@ -43,6 +43,6 @@ $memoryReserve = round(0.1 * $freeMemory);
 $maxChildren = floor(($freeMemory - $memoryReserve) / $workerMemory);
 
 echo "pm.max_children = " . $maxChildren . "\n";
-echo "start_servers = " . min(round(0.25 * $maxChildren), $cpuCores * 4) . "\n";
-echo "min_spare_servers = " . min(round(0.25 * $maxChildren), $cpuCores * 2) . "\n";
-echo "max_spare_servers = " . min(round(0.75 * $maxChildren), $cpuCores * 4) . "\n";
+echo "pm.start_servers = " . min(round(0.25 * $maxChildren), $cpuCores * 4) . "\n";
+echo "pm.min_spare_servers = " . min(round(0.25 * $maxChildren), $cpuCores * 2) . "\n";
+echo "pm.max_spare_servers = " . min(round(0.75 * $maxChildren), $cpuCores * 4) . "\n";
